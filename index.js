@@ -66,3 +66,24 @@ const saveChanges = () => {
   localStorage.setItem("tasky",JSON.stringify({cards:globalStore}));
 
 };
+
+
+const deleteCard = (event)=>{
+  event = window.event;
+
+  // id
+  const targetID = event.target.id;
+  const tagname = event.target.tagName;
+  
+
+  globalStore = globalStore.filter((cardObject) => cardObject.id !== targetID); 
+  localStorage.setItem("tasky", JSON.stringify({cards:globalStore})); // an object
+  // contact parent
+
+  if(tagname === "BUTTON"){
+    return taskContainer.removeChild(event.target.parentNode.parentNode.parentNode);
+  }else{
+    return taskContainer.removeChild(event.target.parentNode.parentNode.parentNode.parentNode);
+  }
+
+};
